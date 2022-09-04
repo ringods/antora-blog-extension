@@ -1,0 +1,106 @@
+= Antora Blog Extension
+:url-antora-docs: https://docs.antora.org/antora/3.0
+:url-antora-lunr: https://github.com/Mogztter/antora-lunr
+:url-repo: https://github.com/ringods/antora-blog-extension
+:toc: preamble
+:toc-title: Contents
+
+== Prerequisites
+
+In order to use this extension, you must be using at least Node.js 16 and Antora 3.
+We assume you've already set up an Antora playbook file (i.e., _antora-playbook.yml_) to build your site.
+
+== Installation
+
+Begin by installing the extension package into your {url-antora-docs}/playbook/use-an-existing-playbook-project/[playbook project]:
+
+[,console]
+----
+$ npm i @ringods/antora-blog-extension
+----
+
+The previous command downloads and installs the latest release of this software from the npm registry.
+If you want to use the development version, please refer to the <<contributing, contributing section>>.
+
+Although the software in the git repository is regularly and rigorously tested, the behavior of the development version may not always match the documentation.
+
+== Usage
+
+This section explains how to activate the blog integration and how to use the search interface it provides.
+
+=== Register the extension
+
+Now that you have the Blog extension installed, you need to {url-antora-docs}/extend/register-extension/[register the extension] with Antora.
+To register the extension, you'll add an entry that cites the name of the package to the `antora.extensions` key in your {url-antora-docs}/playbook/[Antora playbook file].
+
+Open the Antora playbook file and add the extension as follows:
+
+.antora-playbook.yml
+[,yaml]
+----
+antora:
+  extensions:
+  - '@ringods/antora-blog-extension'
+----
+
+If you don't need to specify any configuration keys, the entry in `antora.extensions` can be the name of the package.
+In this case, quotes are required around the package name since `@` is a special character in YAML.
+
+TIP: Alternately, you can register the extension when you run the `antora` command using the `--extension` option.
+
+In order to specify configuration keys for the extension, you must change the entry to a map syntax.
+When using the map syntax, the package name must be preceded by the `require` key, as shown here:
+
+.antora-playbook.yml
+[,yaml]
+----
+antora:
+  extensions:
+  - require: '@ringods/antora-blog-extension'
+----
+
+You may want to start with this syntax so you don't have to remember to switch to it later when you want to specify configuration.
+
+=== Generate the site
+
+If you registered the extension in your playbook file, you can generate your site using the `antora` command without having to pass any additional options or environment variables.
+
+[,console]
+----
+$ antora antora-playbook.yml
+----
+
+If you have not registered the extension in your playbook file, you can register it using the `--extension` CLI option of the `antora` command:
+
+[,console]
+----
+$ antora --extension @ringods/antora-blog-extension antora-playbook.yml
+----
+
+Using the `--extension` option also allows you to enable the extension that's registered in the playbook file, but marked as not enabled using the `enabled` key.
+See {url-antora-docs}/extend/enable-extension/[Enable an Extension] for details about how that works.
+
+[#contributing]
+== Contributing
+
+If you are interested in contributing to this project, please refer to the <<contributing.adoc#,contributing guide>>.
+In this guide, you'll learn how to:
+
+* <<contributing.adoc#set-up-workspace,set up your development workspace>>
+* <<contributing.adoc#build-project,build the project>>
+* <<contributing.adoc#run-dev-version,run the development version>>
+* <<contributing.adoc#project-rq,submit a merge request>>
+
+Thanks in advance for helping to make this project a success!
+
+== Who's using it?
+
+Here's a list of projects using the Antora Blog extension.
+
+* https://ringo.de-smet.name/[Ringo's Blog]
+
+To add your project to this list, please {url-repo}/-/edit/main/README.adoc[edit this file]!
+
+== Trademarks
+
+AsciiDoc(R) is a trademark of the Eclipse Foundation, Inc.

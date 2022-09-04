@@ -1,6 +1,7 @@
+import * as events from './events';
+
 class BlogExtension {
 
-  // private startTime;
   private context;
 
   static register() {
@@ -9,22 +10,74 @@ class BlogExtension {
 
   constructor(generatorContext: any) {
     ;(this.context = generatorContext)
+    .on('register', this.onRegister.bind(this))
+    .on('contextStarted', this.onContextStarted.bind(this))
     .on('playbookBuilt', this.onPlaybookBuilt.bind(this))
+    .on('beforeProcess', this.onBeforeProcess.bind(this))
+    .on('contentAggregated', this.onContentAggregated.bind(this))
+    .on('uiLoaded', this.onUiLoaded.bind(this))
+    .on('contentClassified', this.onContentClassified.bind(this))
+    .on('documentsConverted', this.onDocumentsConverted.bind(this))
+    .on('navigationBuilt', this.onNavigationBuilt.bind(this))
+    .on('pagesComposed', this.onPagesComposed.bind(this))
+    .on('redirectsProduced', this.onRedirectsProduced.bind(this))
+    .on('siteMapped', this.onSiteMapped.bind(this))
+    .on('beforePublish', this.onBeforePublish.bind(this))
     .on('sitePublished', this.onSitePublished.bind(this))
+    .on('contextStopped', this.onContextStopped.bind(this))
+    .on('contextClosed', this.onContextClosed.bind(this))
   }
 
-  onPlaybookBuilt() {
-    // this.startTime = new Date()
-    const logger = this.context.getLogger('@ringods/antora-blog-extension')
-    logger.info('antora-blog-extension.onPlaybookBuilt')
+  onRegister(event: Object) {
+    // Not invoked
   }
 
-  onSitePublished() {
-    // const elapsed = (new Date() - this.startTime) / 1000
-    const logger = this.context.getLogger('antora-blog-extension')
-    logger.info('antora-blog-extension.onSitePublished')
-    // logger.info(`elapsed time: ${elapsed}s`)
+  onContextStarted(event: events.ContextStartedEvent) {
   }
+
+  onPlaybookBuilt(event: events.PlaybookBuiltEvent) {
+  }
+  
+  onBeforeProcess(event: events.BeforeProcessEvent) {
+  }
+
+  onContentAggregated(event: events.ContentAggregatedEvent) {
+  }
+
+  onUiLoaded(event: events.UiLoadedEvent) {
+  }
+
+  onContentClassified(event: events.ContentClassifiedEvent) {
+  }
+
+  onDocumentsConverted(event: events.DocumentsConvertedEvent) {
+  }
+
+  onNavigationBuilt(navigationBuiltEvent: events.NavigationBuiltEvent) {
+  }
+
+  onPagesComposed(event: events.PagesComposedEvent) {
+  }
+
+  onRedirectsProduced(event: events.RedirectsProducedEvent) {
+  }
+
+  onSiteMapped(event: events.SiteMappedEvent) {
+  }
+
+  onBeforePublish(event: events.BeforePublishEvent) {
+  }
+
+  onSitePublished(event: events.SitePublishedEvent) {
+  }
+
+  onContextStopped(event: Object) {
+    // Not invoked
+  }
+
+  onContextClosed(event: events.ContextClosedEvent) {
+  }
+
 }
 
 module.exports = BlogExtension
