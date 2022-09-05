@@ -19,7 +19,7 @@ export interface ContentAggregatedEvent extends BaseEvent {
     siteAsciiDocConfig: types.SiteAsciiDocConfig;
     siteCatalog: types.SiteCatalog;
     uiCatalog: types.UiCatalog;
-    contentAggregate: types.ContentAggregate;
+    contentAggregate: types.content.ContentSourceRoot[];
 }
 
 export interface UiLoadedEvent extends BaseEvent {

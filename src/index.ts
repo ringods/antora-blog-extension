@@ -10,7 +10,6 @@ class BlogExtension {
 
   constructor(generatorContext: any) {
     ;(this.context = generatorContext)
-    .on('register', this.onRegister.bind(this))
     .on('contextStarted', this.onContextStarted.bind(this))
     .on('playbookBuilt', this.onPlaybookBuilt.bind(this))
     .on('beforeProcess', this.onBeforeProcess.bind(this))
@@ -26,10 +25,6 @@ class BlogExtension {
     .on('sitePublished', this.onSitePublished.bind(this))
     .on('contextStopped', this.onContextStopped.bind(this))
     .on('contextClosed', this.onContextClosed.bind(this))
-  }
-
-  onRegister(event: Object) {
-    // Not invoked
   }
 
   onContextStarted(event: events.ContextStartedEvent) {
